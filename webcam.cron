@@ -1,0 +1,4 @@
+# make a screenshot
+0 10/15 * * * ./var/www/camera/make_screenshot.sh
+
+# send to google drive
