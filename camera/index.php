@@ -8,8 +8,7 @@
     $files = [];
     if ($handle = opendir('screenshots/')) {
         while (false !== ($entry = readdir($handle))) {
-
-            if ($entry != "." && $entry != "..") {
+            if ($entry != "." && $entry != ".." && preg_match('/[^0-9]+/', $entry)) {
                 $filenames[] = $entry;
             }
         }
@@ -18,7 +17,11 @@
     // ordered...
     sort($filenames);
     foreach ($filenames as $filename) {
-        $date = new \DateTime(substr($filename, 0, 12));
+        try {
+            $date = new \DateTime(substr($filename, 0, 12));
+        } catch (\Exception $e) {
+            continue;
+        }
         if (!array_key_exists($date->format("Y-m-d"), $files)) {
             $files[$date->format("Y-m-d")] = [];
         }
@@ -36,7 +39,7 @@
 
     // make list of dates
     $list = array();
-    $period = new \DatePeriod($first, (new \DateInterval('P1D')), new \DateTime());
+    $period = new \DatePeriod($first, (new \DateInterval('P1D')), new \DateTime("+23 hour"));
     foreach ($period as $date) {
         $key = $date->format("Y-m-d");
         if (array_key_exists($key, $files)) {
@@ -137,10 +140,6 @@
                     }
                 }, false);
             }
-
-            document.getElementById("take").addEventListener("click", function () {
-                // @todo
-            });
 
             var isOn = false;
             document.getElementById("play").addEventListener("click", function () {
