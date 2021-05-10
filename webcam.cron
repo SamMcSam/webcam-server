@@ -1,4 +1,8 @@
+# activate webcam
+@boot root export LD_LIBRARY_PATH=/var/lib/mjpeg-streamer/mjpg-streamer/mjpg-streamer-experimental && /var/lib/mjpeg-streamer/mjpg-streamer/mjpg-streamer-experimental/mjpg_streamer -o "output_http.so -w ./www" -i "input_raspicam.so" &> /dev/null &
+
 # make a screenshot
-0 10/15 * * * ./var/www/camera/make_screenshot.sh
+0 10/15 * * * root ./var/www/camera/make_screenshot.sh
 
 # send to google drive
+0 * * * * root rclone sync drive:raspberry /var/www/camera/screenshots

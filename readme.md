@@ -17,7 +17,7 @@ then run
 
 ```
 screen
-/var/lib/mjpg-streamer/mjpg_streamer -o "output_http.so -w ./www" -i "input_raspicam.so"
+/var/lib/mjpeg-streamer/mjpg-streamer/mjpg-streamer-experimental/mjpg_streamer -o "output_http.so -w ./www" -i "input_raspicam.so"
 ```
 
 add proxypass to nginx config
@@ -39,5 +39,5 @@ ln camera /var/www/camera -s
 ## cron setup 
 
 ```
-ln camera webcam.cron /etc/cron.d/webcam
+ln webcam.cron /etc/cron.d/webcam -s
 ```

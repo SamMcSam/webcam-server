@@ -36,7 +36,7 @@
 
     // make list of dates
     $list = array();
-    $period = new \DatePeriod($first, (new \DateInterval('P1D')), new \DateTime());
+    $period = new \DatePeriod($first, (new \DateInterval('P1D')), new \DateTime("+23 hour"));
     foreach ($period as $date) {
         $key = $date->format("Y-m-d");
         if (array_key_exists($key, $files)) {
@@ -137,10 +137,6 @@
                     }
                 }, false);
             }
-
-            document.getElementById("take").addEventListener("click", function () {
-                // @todo
-            });
 
             var isOn = false;
             document.getElementById("play").addEventListener("click", function () {
