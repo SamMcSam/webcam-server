@@ -54,7 +54,7 @@
 <html>
     <head>
         <style>
-            .scrollTable {
+            #scrollTable {
                 overflow-x: auto;
                 overflow-y: hidden;
             }
@@ -108,7 +108,7 @@
 
 		<img id="timelapse" src="screenshots/<?php echo end($list)["file"];?>" style="height: auto;width: 600px;">
 
-        <div class="scrollTable">
+        <div id="scrollTable">
             <table>
                 <tr>
                     <?php
@@ -192,6 +192,9 @@
                 var elements = document.getElementsByClassName("has-picture");
                 elements[elements.length-1].click();
             });
+
+            // look at last one by default
+            document.getElementById("scrollTable").scrollLeft = document.getElementById("scrollTable").scrollWidth;
         </script>
     </body>
 </html>
